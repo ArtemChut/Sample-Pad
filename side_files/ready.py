@@ -146,8 +146,6 @@ def ready():
                         background_sample.time_passed = pygame.time.get_ticks() - background_sample.started_at
                         from side_files.export import export_recording
 
-                        print(background_sample.time_passed)
-
                         stop_samples("pause") # pauses (ends tbh) all the samples currently playing
                         export_recording()
                         stop_samples("exit", background_sound) # transfers user back to the main menu

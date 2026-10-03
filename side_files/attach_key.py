@@ -140,9 +140,6 @@ def attach_key(sample):
                     fade_out = False
                 slider_type = ""
 
-                from side_files import volume_slider as v_s
-                v_s.slider_pos = width*0.12+width*0.275//2
-
 
 
         # fade out part

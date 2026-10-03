@@ -1,6 +1,7 @@
 from packages import pygame, screen, medium_font, width, height
 
-slider_pos = slider_pos = width*0.12+width*0.275//2
+slider_pos = width*0.12+width*0.275//2
+volume_slider_pos = width*0.12+width*0.275//2
 def display_slider(sample, slider_type="volume"):
     global slider_pos
 
@@ -16,8 +17,7 @@ def display_slider(sample, slider_type="volume"):
             slider_pos = width*0.15+20 + sample.fade_in*(width*0.215-40)/length_seconds
         else:
             slider_pos = width*0.15+20 + sample.fade_out*(width*0.215-40)/length_seconds
-    else: # if type is volume
-        slider_pos = width*0.12+width*0.275//2*sample.volume # acc can't remember how i did this, my bad. principle is the same as a fade-in/out
+
 
 
     if slider_type == "volume":
@@ -44,15 +44,16 @@ def display_slider(sample, slider_type="volume"):
 
 orig_x = width*0.12+width*0.275//2-10
 def interact_slider(sample, type="volume"):
-    global slider_pos
+    global slider_pos, volume_slider_pos
     x,y = pygame.mouse.get_pos()
+    slider_pos = volume_slider_pos
 
     if type == "volume":
         orig_x = width*0.12+width*0.275//2*sample.volume # position where volume currently is on a slider bar
         if 0 <= sample.volume-(orig_x-x)*0.01 <= 2:
             sample.volume -= (orig_x-x)*0.01 # change volume by 1%
             
-            slider_pos -= (orig_x-x)*0.9
+            volume_slider_pos -= (orig_x-x)*0.9
 
     elif type == "fade in" or type == "fade out":
         orig_x = width*0.15+20 # very start of the slider bar + margin
